@@ -1,0 +1,6 @@
+@APIKnowledgeBase_HostAddress = http://localhost:5143
+
+GET {{APIKnowledgeBase_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
