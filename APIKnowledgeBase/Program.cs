@@ -13,14 +13,7 @@ namespace APIKnowledgeBase
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("APIKnowledgeBaseContext") ?? throw new InvalidOperationException("Connection string 'APIKnowledgeBaseContext' not found.")));
 
-            //// --- Database Configuration ---
-            //// 1. Read the connection string from appsettings.json
-            //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-            //// 2. Register ApplicationDbContext and configure it to use SQLite
-            //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlite(connectionString)); // Use the connection string here
-
+           
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -47,7 +40,7 @@ namespace APIKnowledgeBase
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                dbContext.Database.Migrate(); // oder .Migrate() bei Migrationen
+                dbContext.Database.Migrate(); 
             }
 
             app.Run();
