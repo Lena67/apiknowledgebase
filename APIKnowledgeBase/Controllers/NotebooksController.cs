@@ -12,9 +12,9 @@ namespace APIKnowledgeBase.Controllers
 {
     public class NotebooksController : Controller
     {
-        private readonly APIKnowledgeBaseContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public NotebooksController(APIKnowledgeBaseContext context)
+        public NotebooksController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace APIKnowledgeBase.Controllers
         // GET: Notebooks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Notebook.ToListAsync());
+            return View(await _context.Notebooks.ToListAsync());
         }
 
         // GET: Notebooks/Details/5
@@ -33,7 +33,7 @@ namespace APIKnowledgeBase.Controllers
                 return NotFound();
             }
 
-            var notebook = await _context.Notebook
+            var notebook = await _context.Notebooks
                 .FirstOrDefaultAsync(m => m.NotebookId == id);
             if (notebook == null)
             {
@@ -74,7 +74,7 @@ namespace APIKnowledgeBase.Controllers
                 return NotFound();
             }
 
-            var notebook = await _context.Notebook.FindAsync(id);
+            var notebook = await _context.Notebooks.FindAsync(id);
             if (notebook == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace APIKnowledgeBase.Controllers
                 return NotFound();
             }
 
-            var notebook = await _context.Notebook
+            var notebook = await _context.Notebooks
                 .FirstOrDefaultAsync(m => m.NotebookId == id);
             if (notebook == null)
             {
@@ -140,10 +140,10 @@ namespace APIKnowledgeBase.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var notebook = await _context.Notebook.FindAsync(id);
+            var notebook = await _context.Notebooks.FindAsync(id);
             if (notebook != null)
             {
-                _context.Notebook.Remove(notebook);
+                _context.Notebooks.Remove(notebook);
             }
 
             await _context.SaveChangesAsync();
@@ -152,7 +152,7 @@ namespace APIKnowledgeBase.Controllers
 
         private bool NotebookExists(Guid id)
         {
-            return _context.Notebook.Any(e => e.NotebookId == id);
+            return _context.Notebooks.Any(e => e.NotebookId == id);
         }
     }
 }

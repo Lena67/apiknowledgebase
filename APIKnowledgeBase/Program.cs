@@ -10,7 +10,7 @@ namespace APIKnowledgeBase
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<APIKnowledgeBaseContext>(options =>
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("APIKnowledgeBaseContext") ?? throw new InvalidOperationException("Connection string 'APIKnowledgeBaseContext' not found.")));
 
             // --- Database Configuration ---
