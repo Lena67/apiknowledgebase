@@ -47,7 +47,7 @@ namespace APIKnowledgeBase
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                dbContext.Database.EnsureCreated(); // oder .Migrate() bei Migrationen
+                dbContext.Database.Migrate(); // oder .Migrate() bei Migrationen
             }
 
             app.Run();
