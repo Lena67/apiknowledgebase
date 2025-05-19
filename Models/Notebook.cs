@@ -25,4 +25,10 @@ namespace knowledgebaseapi.Model
         [Timestamp]
         public byte[]? Version { get; set; }
     }
+
+    public class NotebookDto
+    {
+        public string Name { get; set; } = string.Empty;
+        public string? Content { get; set; }
+    }
 }

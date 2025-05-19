@@ -4,3 +4,6 @@ GET {{knowledgebaseapi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+GET {{knowledgebaseapi_HostAddress}}/api/Notebook
+Accept: application/json
