@@ -1,6 +1,7 @@
 
 using APIKnowledgeBase.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace APIKnowledgeBase
 {
@@ -9,6 +10,8 @@ namespace APIKnowledgeBase
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<APIKnowledgeBaseContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("APIKnowledgeBaseContext") ?? throw new InvalidOperationException("Connection string 'APIKnowledgeBaseContext' not found.")));
 
             // --- Database Configuration ---
             // 1. Read the connection string from appsettings.json
